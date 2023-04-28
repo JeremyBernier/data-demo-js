@@ -12,37 +12,88 @@ import { faker } from "@faker-js/faker";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
+// export const options = {
+//   responsive: true,
+//   plugins: {
+//     legend: {
+//       position: "top" as const,
+//     },
+//     title: {
+//       display: true,
+//       text: "Chart.js Line Chart",
+//     },
+//   },
+//   scales: {
+//     y: {
+//       beginAtZero: true,
+//     },
+//   },
+// };
+
+// export const data = {
+//   datasets: [
+//     {
+//       label: "A dataset",
+//       data: Array.from({ length: 100 }, () => ({
+//         x: faker.datatype.number({ min: -100, max: 100 }),
+//         y: faker.datatype.number({ min: -100, max: 100 }),
+//       })),
+//       backgroundColor: "rgba(255, 99, 132, 1)",
+//     },
+//   ],
+// };
+
+const options = {
   scales: {
-    y: {
-      beginAtZero: true,
+    x: {
+      type: "linear",
+      position: "bottom",
     },
+    // xAxes: [
+    //   {
+    //     type: "linear",
+    //     position: "bottom",
+    //     // ticks: {
+    //     //   min: -1,
+    //     //   max: 8,
+    //     //   stepSize: 1,
+    //     //   fixedStepSize: 1,
+    //     // },
+    //   },
+    // ],
+    // yAxes: [
+    //   {
+    //     // ticks: {
+    //     //   min: -2,
+    //     //   max: 4,
+    //     //   stepSize: 1,
+    //     //   fixedStepSize: 1,
+    //     // },
+    //   },
+    // ],
   },
 };
 
-export const data = {
-  datasets: [
-    {
-      label: "A dataset",
-      data: Array.from({ length: 100 }, () => ({
-        x: faker.datatype.number({ min: -100, max: 100 }),
-        y: faker.datatype.number({ min: -100, max: 100 }),
-      })),
-      backgroundColor: "rgba(255, 99, 132, 1)",
-    },
-  ],
-};
+export default function ScatterPlot({ plotData, lineData }) {
+  const data = {
+    datasets: [
+      {
+        type: "line",
+        label: "Line",
+        data: lineData,
+        backgroundColor: ["rgba(123, 83, 252, 0.8)"],
+        borderColor: ["rgba(33, 232, 234, 1)"],
+        borderWidth: 1,
+        pointRadius: 0,
+      },
+      {
+        type: "scatter",
+        label: "Data",
+        data: plotData,
+        backgroundColor: "rgb(255, 99, 132)",
+      },
+    ],
+  };
 
-export default function ScatterPlot() {
   return <Scatter options={options} data={data} />;
 }
