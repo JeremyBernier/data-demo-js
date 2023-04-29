@@ -1,19 +1,23 @@
 import React from "react";
 import * as math from "mathjs";
 
-const RegressionMultiple = ({ data }) => {
-  console.log("data", data);
-
-  if (!data?.length) {
+// currently assumes X and Y are only numbers
+const RegressionMultiple = ({ X: Xarr, Y: Yarr }) => {
+  if (!Xarr?.length || !Yarr?.length) {
     return <div></div>;
   }
 
-  const X = math.matrix(
-    data.slice(1).map((row) => row.slice(0, row.length - 1))
-  );
-  const Y = math.matrix(data.slice(1).map((row) => [row[row.length - 1]]));
+  console.log("Xarr", Xarr);
+
+  const X = math.matrix(Xarr.map((row) => [1, ...row]));
+  const Y = math.matrix(Yarr);
   console.log("X", X);
-  console.log("Y", Y);
+  // console.log("Y", Y);
+
+  console.log(
+    "math.multiply(math.transpose(X), X)",
+    math.multiply(math.transpose(X), X)
+  );
 
   const B = math.multiply(
     math.multiply(
@@ -24,17 +28,14 @@ const RegressionMultiple = ({ data }) => {
   );
 
   const Y_predicted = math.multiply(X, B);
-  const E = math.subtract(Y, Y_predicted);
-
-  console.log("B", B);
-  console.log("E", E);
+  // const E = math.subtract(Y, Y_predicted);
 
   return (
     <div>
       <div>Regression Equations</div>
       <div>Y = X*B + E</div>
       <div>{`B = ${B.toString()}`}</div>
-      <div>{`E = ${E.toString()}`}</div>
+      {/* <div>{`E = ${E.toString()}`}</div> */}
     </div>
   );
 };

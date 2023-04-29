@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
               <Link
                 href={{
                   pathname: "/",
-                  query: { ...query, data: "realestate" },
+                  query: { ...query, data: "real_estate" },
                 }}
               >
                 Real Estate
