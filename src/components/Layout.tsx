@@ -57,6 +57,16 @@ const Layout = ({ children }) => {
                 Car
               </Link>
             </li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/",
+                  query: { ...query, data: "tumor" },
+                }}
+              >
+                Tumor (Logistic Regression)
+              </Link>
+            </li>
             {/* <li>
               <a
                 href="#"

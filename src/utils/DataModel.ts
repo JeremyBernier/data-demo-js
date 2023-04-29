@@ -1,5 +1,3 @@
-import { string } from "mathjs";
-
 export default class DataModel {
   id: string;
   columns: string[];

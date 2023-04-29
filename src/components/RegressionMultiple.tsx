@@ -33,7 +33,7 @@ const RegressionMultiple = ({ X: Xarr, Y: Yarr }) => {
   return (
     <div>
       <div>Regression Equations</div>
-      <div>Y = X*B + E</div>
+      <div>Y = X*B</div>
       <div>{`B = ${B.toString()}`}</div>
       {/* <div>{`E = ${E.toString()}`}</div> */}
     </div>

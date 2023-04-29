@@ -7,6 +7,10 @@ const dataConfig = {
     filename: "real_estate.csv",
     independentVars: ["X3 distance to the nearest MRT station"],
   },
+  tumor: {
+    filename: "tumor.csv",
+    independentVars: ["Size"],
+  },
 };
 
 export default dataConfig;
