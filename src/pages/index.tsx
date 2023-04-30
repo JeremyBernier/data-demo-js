@@ -13,6 +13,7 @@ import dataConfig from "src/dataConfig";
 import DataModel from "src/utils/DataModel";
 import Tabs from "src/components/Tabs";
 import { calculateCoefficients } from "src/utils/math";
+import ChartTab from "src/components/ChartTab";
 
 const DataPageContent = ({
   dataModel,
@@ -52,8 +53,10 @@ const DataPageContent = ({
     const plotData = dataModel?.data?.map((row) => ({ x: row[3], y: row[7] }));
     // console.log("plotData", plotData);
 
-    // const x_min = Math.min(...X);
     const x_max = Math.max(...X);
+
+    console.log("b_0", b_0);
+    console.log("b_1", b_1);
 
     const lineData = [
       {
@@ -80,10 +83,11 @@ const DataPageContent = ({
       <div>no data</div>
     ),
     chart: (
-      <div>
-        <h3>{`y = ${b_0} + ${b_1} * x`}</h3>
-        <ScatterPlot plotData={plotData} lineData={lineData} />
-      </div>
+      <ChartTab
+        equation={`y = ${b_0} + ${b_1} * x`}
+        plotData={plotData}
+        lineData={lineData}
+      />
     ),
     regression:
       regressionType !== "logistic" ? (
@@ -93,8 +97,7 @@ const DataPageContent = ({
       ),
   };
 
-  console.log("activeTab", activeTab);
-  console.log("tabMap", tabMap);
+  console.log("lineData", lineData);
 
   return (
     <>
@@ -112,15 +115,12 @@ export default function Home() {
   const datasetId = String(query?.data) || "car";
 
   const dataConfigParams = dataConfig[datasetId];
-  console.log("Home dataConfigParams", dataConfigParams);
 
   useEffect(() => {
-    console.log("useEffect bro", !dataConfigParams?.filename);
     if (!dataConfigParams?.filename) {
       return;
     }
     setData(undefined);
-    console.log("!setData undefined");
     (async () => {
       const data = await fetch(`/data/${dataConfigParams.filename}`);
       const text = await data.text();
@@ -128,8 +128,6 @@ export default function Home() {
       setData(parsed);
     })();
   }, [datasetId, router.query?.data, dataConfigParams?.filename]);
-
-  console.log("data, datasetId", data, datasetId);
 
   return (
     <Layout>

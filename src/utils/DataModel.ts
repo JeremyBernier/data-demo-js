@@ -15,8 +15,6 @@ export default class DataModel {
   }
 
   getDataByColNames(colNames: string[]) {
-    console.log("colNames", colNames);
-    console.log("this.columns", this.columns);
     const indexes = colNames.map((colName) => this.columns.indexOf(colName));
     return this.data.map((row) => indexes.map((colIndex) => row[colIndex]));
   }
