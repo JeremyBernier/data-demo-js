@@ -10,6 +10,7 @@ const dataConfig = {
   tumor: {
     filename: "tumor.csv",
     independentVars: ["Size"],
+    regressionType: "logistic",
   },
 };
 

@@ -8,15 +8,7 @@ const y = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1];
 test("adds 1 + 2 to equal 3", () => {
   const model = new LogisticRegression(x, y);
   model.fit();
-  const accuracy =
-    x
-      .map((row, i) => (model.predict([row]).get([0]) === y[i] ? 1 : 0))
-      .reduce((a: number, b: number) => a + b, 0) / x.length;
-  // console.log("accuracy", accuracy);
-  // console.log("predict0", model.predict([[3.46]]));
-  // console.log(
-  //   "predictions",
-  //   x.map((row, i) => (model.predict([row]).get([0]) ? 1 : 0))
-  // );
-  expect(accuracy).toBe(0.9166666666666666);
+  expect(model.calculateAccuracy(x)).toBe(0.9166666666666666);
+  expect(model.weights).toEqual([-1.7376501276409693, 0.6465409867899616]);
+  console.log("weights", model.weights);
 });

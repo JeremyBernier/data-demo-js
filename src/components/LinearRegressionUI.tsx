@@ -2,7 +2,7 @@ import React from "react";
 import * as math from "mathjs";
 
 // currently assumes X and Y are only numbers
-const RegressionMultiple = ({ X: Xarr, Y: Yarr }) => {
+const LinearRegressionUI = ({ X: Xarr, Y: Yarr }) => {
   if (!Xarr?.length || !Yarr?.length) {
     return <div></div>;
   }
@@ -32,7 +32,7 @@ const RegressionMultiple = ({ X: Xarr, Y: Yarr }) => {
 
   return (
     <div>
-      <div>Regression Equations</div>
+      <div>Linear Regression Equations</div>
       <div>Y = X*B</div>
       <div>{`B = ${B.toString()}`}</div>
       {/* <div>{`E = ${E.toString()}`}</div> */}
@@ -40,4 +40,4 @@ const RegressionMultiple = ({ X: Xarr, Y: Yarr }) => {
   );
 };
 
-export default RegressionMultiple;
+export default LinearRegressionUI;

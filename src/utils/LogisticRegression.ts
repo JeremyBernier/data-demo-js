@@ -79,4 +79,12 @@ export default class LogisticRegression {
     const prediction = this.computeYPred(math.matrix(X), this.weights);
     return math.map(prediction, (val) => (val >= threshold ? 1 : 0));
   }
+
+  calculateAccuracy(x: number[][], threshold: number = 0.5): number {
+    return (
+      x
+        .map((row, i) => (this.predict([row]).get([0]) === this.y[i] ? 1 : 0))
+        .reduce((a: number, b: number) => a + b, 0) / x.length
+    );
+  }
 }

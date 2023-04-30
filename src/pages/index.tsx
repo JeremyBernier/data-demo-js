@@ -6,7 +6,8 @@ import Table from "src/components/Table";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from "src/components/Layout";
-import RegressionMultiple from "src/components/RegressionMultiple";
+import LinearRegressionUI from "src/components/LinearRegressionUI";
+import LogisticRegressionUI from "src/components/LogisticRegressionUI";
 import { parseCsv } from "src/utils/csv";
 import dataConfig from "src/dataConfig";
 import DataModel from "src/utils/DataModel";
@@ -28,7 +29,7 @@ const DataPageContent = ({
   console.log("DataPageContent dataConfigParams", dataConfigParams);
   console.log("DataPageContent, dataModel", dataModel);
 
-  const { independentVars } = dataConfigParams;
+  const { independentVars, regressionType } = dataConfigParams;
 
   const {
     plotData = [],
@@ -93,7 +94,12 @@ const DataPageContent = ({
         <ScatterPlot plotData={plotData} lineData={lineData} />
       </div>
     ),
-    regression: <RegressionMultiple X={X} Y={Y} />,
+    regression:
+      regressionType !== "logistic" ? (
+        <LinearRegressionUI X={X} Y={Y} />
+      ) : (
+        <LogisticRegressionUI X={X} Y={Y} />
+      ),
   };
 
   return (
