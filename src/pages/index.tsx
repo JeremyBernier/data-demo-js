@@ -14,8 +14,6 @@ import DataModel from "src/utils/DataModel";
 import Tabs from "src/components/Tabs";
 import { calculateCoefficients } from "src/utils/math";
 
-// const inter = Inter({ subsets: ["latin"] });
-
 const DataPageContent = ({
   dataModel,
   dataConfigParams,
@@ -24,10 +22,7 @@ const DataPageContent = ({
   dataConfigParams: any;
 }) => {
   const router = useRouter();
-  const activeTab = String(router.query.tab) || "data";
-
-  console.log("DataPageContent dataConfigParams", dataConfigParams);
-  console.log("DataPageContent, dataModel", dataModel);
+  const activeTab = router.query.tab ? String(router.query.tab) : "data";
 
   const { independentVars, regressionType } = dataConfigParams;
 
@@ -46,12 +41,8 @@ const DataPageContent = ({
     // const X = independentVars.map(colName => data[colName]);
     // const Y = independentVars.map(colName => data[colName]);
 
-    console.log("dataModel", dataModel);
-
     const X = dataModel.getDataByColNames(independentVars);
     const Y = dataModel.data.map((row) => row[row.length - 1]);
-
-    console.log("index.tsx", X);
 
     // const X = data?.slice(1)?.map((row) => row[3]);
     // const Y = data?.slice(1)?.map((row) => row[7]);
@@ -86,7 +77,7 @@ const DataPageContent = ({
         independentVars={independentVars}
       />
     ) : (
-      <div></div>
+      <div>no data</div>
     ),
     chart: (
       <div>
@@ -102,10 +93,13 @@ const DataPageContent = ({
       ),
   };
 
+  console.log("activeTab", activeTab);
+  console.log("tabMap", tabMap);
+
   return (
     <>
       <Tabs activeTab={activeTab} />
-      {(router.query?.tab && tabMap[activeTab]) || null}
+      {tabMap[activeTab]}
     </>
   );
 };
@@ -115,9 +109,9 @@ export default function Home() {
   const router = useRouter();
   const { query } = router;
 
-  const dataset = String(query?.data) || "car";
+  const datasetId = String(query?.data) || "car";
 
-  const dataConfigParams = dataConfig[dataset];
+  const dataConfigParams = dataConfig[datasetId];
   console.log("Home dataConfigParams", dataConfigParams);
 
   useEffect(() => {
@@ -130,16 +124,18 @@ export default function Home() {
     (async () => {
       const data = await fetch(`/data/${dataConfigParams.filename}`);
       const text = await data.text();
-      const parsed = parseCsv(text, dataset);
+      const parsed = parseCsv(text, datasetId);
       setData(parsed);
     })();
-  }, [dataset, router.query?.data, dataConfigParams?.filename]);
+  }, [datasetId, router.query?.data, dataConfigParams?.filename]);
+
+  console.log("data, datasetId", data, datasetId);
 
   return (
     <Layout>
-      {data && data.id === dataset && (
+      {data && data.id === datasetId && (
         <DataPageContent
-          key={dataset}
+          key={datasetId}
           dataModel={data}
           dataConfigParams={dataConfigParams}
         />

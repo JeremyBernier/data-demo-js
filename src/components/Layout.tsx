@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 
 const Layout = ({ children }) => {
   const { query } = useRouter();
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <h3 className="font-bold text-lg mb-4">Data</h3>
           <ul className="space-y-2 font-medium">
-            <li>
+            <li className={query.data === "real_estate" ? "bg-gray-900" : ""}>
               <Link
                 href={{
                   pathname: "/",
@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
                 Real Estate
               </Link>
             </li>
-            <li>
+            <li className={query.data === "car" ? "bg-gray-900" : ""}>
               <Link
                 href={{
                   pathname: "/",
@@ -57,7 +57,7 @@ const Layout = ({ children }) => {
                 Car
               </Link>
             </li>
-            <li>
+            <li className={query.data === "tumor" ? "bg-gray-900" : ""}>
               <Link
                 href={{
                   pathname: "/",
