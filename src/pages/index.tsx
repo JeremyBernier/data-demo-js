@@ -58,16 +58,19 @@ const DataPageContent = ({
     console.log("b_0", b_0);
     console.log("b_1", b_1);
 
-    const lineData = [
-      {
-        x: 0,
-        y: b_0,
-      },
-      {
-        x: x_max,
-        y: b_0 + x_max * b_1,
-      },
-    ];
+    const lineData =
+      regressionType === "linear"
+        ? [
+            {
+              x: 0,
+              y: b_0,
+            },
+            {
+              x: x_max,
+              y: b_0 + x_max * b_1,
+            },
+          ]
+        : null;
 
     return { plotData, lineData, b_0, b_1, X, Y };
   }, [dataModel, independentVars]);
