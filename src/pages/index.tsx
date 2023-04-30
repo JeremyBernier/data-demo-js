@@ -72,6 +72,9 @@ const DataPageContent = ({
     return { plotData, lineData, b_0, b_1, X, Y };
   }, [dataModel, independentVars]);
 
+  const equation =
+    regressionType === "linear" ? `y = ${b_0} + ${b_1} * x` : null;
+
   const tabMap = {
     data: dataModel?.data?.length ? (
       <Table
@@ -83,11 +86,7 @@ const DataPageContent = ({
       <div>no data</div>
     ),
     chart: (
-      <ChartTab
-        equation={`y = ${b_0} + ${b_1} * x`}
-        plotData={plotData}
-        lineData={lineData}
-      />
+      <ChartTab equation={equation} plotData={plotData} lineData={lineData} />
     ),
     regression:
       regressionType !== "logistic" ? (
