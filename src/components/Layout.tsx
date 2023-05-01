@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-          <h3 className="font-bold text-lg mb-4">Data</h3>
+          <h3 className="font-bold text-lg mb-4">Datasets</h3>
           <ul className="space-y-2 font-medium">
             <li className={query.data === "real_estate" ? "bg-gray-900" : ""}>
               <Link

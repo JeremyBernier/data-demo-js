@@ -68,10 +68,6 @@ export default class LogisticRegression {
     const sub = math.subtract(yPred, Y);
     const mul = math.multiply(math.transpose(X), sub);
     return math.multiply(mul, 1 / Y.size()[0]);
-
-    // return (
-    //   math.multiply(math.multiply(math.transpose(X), math.subtract(yPred, Y), Y.size()[0])
-    // );
   }
 
   predict(x: number[][], threshold: number = 0.5): math.Matrix {

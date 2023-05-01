@@ -75,24 +75,29 @@ const options = {
 };
 
 export default function ScatterPlot({ plotData, lineData }) {
+  const datasets: any[] = [
+    {
+      type: "scatter",
+      label: "Data",
+      data: plotData,
+      backgroundColor: "rgb(255, 99, 132)",
+    },
+  ];
+
+  if (lineData) {
+    datasets.push({
+      type: "line",
+      label: "Line",
+      data: lineData,
+      backgroundColor: ["rgba(123, 83, 252, 0.8)"],
+      borderColor: ["rgba(33, 232, 234, 1)"],
+      borderWidth: 1,
+      pointRadius: 0,
+    });
+  }
+
   const data = {
-    datasets: [
-      {
-        type: "line",
-        label: "Line",
-        data: lineData,
-        backgroundColor: ["rgba(123, 83, 252, 0.8)"],
-        borderColor: ["rgba(33, 232, 234, 1)"],
-        borderWidth: 1,
-        pointRadius: 0,
-      },
-      {
-        type: "scatter",
-        label: "Data",
-        data: plotData,
-        backgroundColor: "rgb(255, 99, 132)",
-      },
-    ],
+    datasets,
   };
 
   return <Scatter options={options} data={data} />;
