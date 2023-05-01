@@ -1,6 +1,6 @@
 # Data Demo
 
-In this demo
+Simple demo demonstrating regression with Typescript / Javascript:
 - Linear regression
 - Logistic Regression
 
@@ -41,3 +41,9 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ```
 npm test
 ```
+
+## Hire Me
+
+https://www.jbernier.com/
+
+https://www.linkedin.com/in/jeremysbernier/
