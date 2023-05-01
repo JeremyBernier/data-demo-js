@@ -10,5 +10,4 @@ test("adds 1 + 2 to equal 3", () => {
   model.fit();
   expect(model.calculateAccuracy(x)).toBe(0.9166666666666666);
   expect(model.weights).toEqual([-1.7376501276409693, 0.6465409867899616]);
-  console.log("weights", model.weights);
 });

@@ -7,17 +7,8 @@ const LinearRegressionUI = ({ X: Xarr, Y: Yarr }) => {
     return <div></div>;
   }
 
-  console.log("Xarr", Xarr);
-
   const X = math.matrix(Xarr.map((row) => [1, ...row]));
   const Y = math.matrix(Yarr);
-  console.log("X", X);
-  // console.log("Y", Y);
-
-  console.log(
-    "math.multiply(math.transpose(X), X)",
-    math.multiply(math.transpose(X), X)
-  );
 
   const B = math.multiply(
     math.multiply(
@@ -28,14 +19,12 @@ const LinearRegressionUI = ({ X: Xarr, Y: Yarr }) => {
   );
 
   const Y_predicted = math.multiply(X, B);
-  // const E = math.subtract(Y, Y_predicted);
 
   return (
     <div>
       <div>Linear Regression Equations</div>
       <div>Y = X*B</div>
       <div>{`B = ${B.toString()}`}</div>
-      {/* <div>{`E = ${E.toString()}`}</div> */}
     </div>
   );
 };

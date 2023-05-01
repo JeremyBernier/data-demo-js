@@ -89,8 +89,6 @@ const DataPageContent = ({
       ),
   };
 
-  console.log("lineData", lineData);
-
   return (
     <>
       <Tabs activeTab={activeTab} />

@@ -1,6 +1,11 @@
 {
   "name": "linear-regression-next",
   "version": "0.1.0",
+  "author": {
+    "name": "Jeremy Bernier",
+    "email": "jeremy.s.bernier@gmail.com",
+    "url": "https://www.jbernier.com"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -4,9 +4,6 @@ const LEARNING_RATE = 0.1;
 const EPOCHS = 150;
 
 const LogisticRegressionUI = ({ X, Y }) => {
-  console.log("X", X);
-  console.log("Y", Y);
-
   const model = new LogisticRegression(X, Y);
   model.fit(LEARNING_RATE, EPOCHS);
   const accuracy = model.calculateAccuracy(X);
