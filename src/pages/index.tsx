@@ -46,10 +46,7 @@ const DataPageContent = ({
 
     const plotData = X.map((row, index) => ({ x: row[0], y: Y[index] }));
 
-    const x_max = Math.max(...X);
-
-    console.log("b_0", b_0);
-    console.log("b_1", b_1);
+    const x_max = Math.max(...X.flat());
 
     const lineData =
       regressionType === "linear"
