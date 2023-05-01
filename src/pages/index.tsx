@@ -63,7 +63,7 @@ const DataPageContent = ({
         : null;
 
     return { plotData, lineData, b_0, b_1, X, Y };
-  }, [dataModel, independentVars]);
+  }, [dataModel, independentVars, regressionType]);
 
   const equation =
     regressionType === "linear" ? `y = ${b_0} + ${b_1} * x` : null;
