@@ -1,4 +1,4 @@
-import LogisticRegression from "src/utils/LogisticRegression";
+import LogisticRegression from "src/utils/math/LogisticRegression";
 
 const LEARNING_RATE = 0.1;
 const EPOCHS = 150;

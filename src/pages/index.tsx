@@ -12,7 +12,7 @@ import { parseCsv } from "src/utils/csv";
 import dataConfig from "src/dataConfig";
 import DataModel from "src/utils/DataModel";
 import Tabs from "src/components/Tabs";
-import { calculateCoefficients } from "src/utils/math";
+import { calculateCoefficients } from "src/utils/math/LinearRegression";
 import ChartTab from "src/components/ChartTab";
 
 const DataPageContent = ({
