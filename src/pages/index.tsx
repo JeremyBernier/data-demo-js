@@ -39,19 +39,12 @@ const DataPageContent = ({
       return {};
     }
 
-    // const X = independentVars.map(colName => data[colName]);
-    // const Y = independentVars.map(colName => data[colName]);
-
     const X = dataModel.getDataByColNames(independentVars);
     const Y = dataModel.data.map((row) => row[row.length - 1]);
 
-    // const X = data?.slice(1)?.map((row) => row[3]);
-    // const Y = data?.slice(1)?.map((row) => row[7]);
-
     const [b_0, b_1] = calculateCoefficients(X, Y);
 
-    const plotData = dataModel?.data?.map((row) => ({ x: row[3], y: row[7] }));
-    // console.log("plotData", plotData);
+    const plotData = X.map((row, index) => ({ x: row[0], y: Y[index] }));
 
     const x_max = Math.max(...X);
 
